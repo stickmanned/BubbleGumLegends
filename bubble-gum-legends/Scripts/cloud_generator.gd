@@ -58,8 +58,6 @@ func _ready() -> void:
 	# Calculate exact cloud center positions so collision edges meet the borders flush
 	arena_min_x = border_left + cloud_half_width
 	arena_max_x = border_right - cloud_half_width
-
-	# Initialize highest Y so generation begins strictly at or above min_generation_altitude_m (20m)
 	var min_generation_y := ground_y - (min_generation_altitude_m * pixels_per_meter)
 	var first_step := randf_range(min_y_spacing_low, max_y_spacing_low)
 	_highest_y = min_generation_y + first_step
