@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bq1c7xn4mv0d3"]
+
+[ext_resource type="Texture2D" uid="uid://cr62gyc56crq0" path="res://assets/cloud.png" id="1_cloud"]
+[ext_resource type="Script" path="res://Scripts/cloud.gd" id="2_cloud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cloud"]
+size = Vector2(180.6, 77)
+
+[node name="Cloud" type="AnimatableBody2D"]
+script = ExtResource("2_cloud")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_cloud")
+region_enabled = true
+region_rect = Rect2(314, 461, 318, 122)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.2)
+shape = SubResource("RectangleShape2D_cloud")

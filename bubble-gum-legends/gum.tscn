@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://derv8p6fu7gy4"]
+
+[ext_resource type="Texture2D" uid="uid://dqc6oxf6ouyao" path="res://assets/gum.png" id="1_7q8pc"]
+[ext_resource type="Script" uid="uid://ckc0vatq5eclw" path="res://Scripts/gum.gd" id="1_08n5l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_reab8"]
+radius = 77.75378
+
+[node name="Bubble" type="CharacterBody2D" unique_id=562844240]
+script = ExtResource("1_08n5l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=674932523]
+position = Vector2(1, -2)
+scale = Vector2(0.041999992, 0.041999992)
+texture = ExtResource("1_7q8pc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=441924858]
+position = Vector2(1, -2)
+scale = Vector2(0.463, 0.463)
+shape = SubResource("CircleShape2D_reab8")
