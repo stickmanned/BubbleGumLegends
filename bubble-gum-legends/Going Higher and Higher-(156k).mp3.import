@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://sqabny38f1dh"
+path="res://.godot/imported/Going Higher and Higher-(156k).mp3-da0d2793428a0586f9518caecbd8ab56.mp3str"
+
+[deps]
+
+source_file="res://Going Higher and Higher-(156k).mp3"
+dest_files=["res://.godot/imported/Going Higher and Higher-(156k).mp3-da0d2793428a0586f9518caecbd8ab56.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

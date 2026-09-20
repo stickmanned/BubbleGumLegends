@@ -1,6 +1,7 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cqr3m4t0wil8i"]
 
-[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://dx1j8oj53c7t1" path="res://Scripts/hud.gd" id="1_hud"]
+[ext_resource type="FontFile" uid="uid://cn7glg0qbx3tw" path="res://Fredoka-VariableFont_wdth,wght.ttf" id="2_64ctp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.12, 0.12, 0.16, 0.75)
@@ -14,28 +15,94 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="HUD" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.08, 0.08, 0.12, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.25, 0.35, 0.6)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.2, 0.85, 0.3, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="HUD" type="CanvasLayer" unique_id=2069871916]
 script = ExtResource("1_hud")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1542629459]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 180.0
 offset_bottom = 65.0
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1073293660]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="Padding" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="Padding" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=655431996]
 layout_mode = 2
 theme_override_constants/margin_left = 14
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 8
 
-[node name="SizeLabel" type="Label" parent="MarginContainer/PanelContainer/Padding"]
+[node name="SizeLabel" type="Label" parent="MarginContainer/PanelContainer/Padding" unique_id=1433252645]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_64ctp")
+theme_override_font_sizes/font_size = 30
 text = "Bubble Size: 1"
+
+[node name="AltitudeContainer" type="MarginContainer" parent="." unique_id=800609321]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="AltitudeContainer" unique_id=972057694]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Padding" type="MarginContainer" parent="AltitudeContainer/PanelContainer" unique_id=1687311793]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="AltitudeContainer/PanelContainer/Padding" unique_id=752985167]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="AltitudeLabel" type="Label" parent="AltitudeContainer/PanelContainer/Padding/VBox" unique_id=248752657]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_64ctp")
+theme_override_font_sizes/font_size = 20
+text = "Altitude: 0 m"
+horizontal_alignment = 1
+
+[node name="AltitudeBar" type="ProgressBar" parent="AltitudeContainer/PanelContainer/Padding/VBox" unique_id=1591053927]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 14)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+max_value = 1000.0
+show_percentage = false

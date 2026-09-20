@@ -1,16 +1,30 @@
 [gd_scene format=4 uid="uid://h2gc365j2fu7"]
 
+[ext_resource type="Script" uid="uid://chaerkinxmcm6" path="res://Scripts/skyColor.gd" id="1_t88pq"]
 [ext_resource type="TileSet" uid="uid://byq0kg8n2xhg1" path="res://tilesets/terrain_grass.tres" id="1_u44n3"]
 [ext_resource type="PackedScene" uid="uid://derv8p6fu7gy4" path="res://gum.tscn" id="1_wbfu4"]
-[ext_resource type="PackedScene" uid="uid://bq1c7xn4mv0d3" path="res://cloud.tscn" id="4_r0x5m"]
-[ext_resource type="PackedScene" path="res://hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" uid="uid://cqr3m4t0wil8i" path="res://hud.tscn" id="5_hud"]
+[ext_resource type="AudioStream" uid="uid://sqabny38f1dh" path="res://Going Higher and Higher-(156k).mp3" id="6_3mrqo"]
+[ext_resource type="Script" uid="uid://ik7ai5586b1o" path="res://Scripts/cloud_generator.gd" id="6_generator"]
+[ext_resource type="Script" uid="uid://dk0jggisc1t67" path="res://Scripts/music_player.gd" id="8_music_script"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_y8xgx"]
+normal = Vector2(1, 0)
+distance = 3.5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mx3nr"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_reab8"]
+distance = -664.0
 
 [node name="Game" type="Node2D" unique_id=513098386]
 
-[node name="SkyBackground" type="CanvasLayer" parent="." unique_id=641859144]
+[node name="bg" type="CanvasLayer" parent="." unique_id=641859144]
 layer = -100
+script = ExtResource("1_t88pq")
 
-[node name="ColorRect" type="ColorRect" parent="SkyBackground" unique_id=1685817520]
+[node name="ColorRect" type="ColorRect" parent="bg" unique_id=1685817520]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,24 +44,28 @@ position = Vector2(-500, 100)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="Cloud1" parent="." unique_id=1465073754 instance=ExtResource("4_r0x5m")]
-position = Vector2(-250, 165)
-
-[node name="Cloud2" parent="." unique_id=1410496878 instance=ExtResource("4_r0x5m")]
-position = Vector2(-20, 122)
-
-[node name="Cloud3" parent="." unique_id=1093323869 instance=ExtResource("4_r0x5m")]
-position = Vector2(210, 70)
-
-[node name="Cloud4" parent="." unique_id=1902075611 instance=ExtResource("4_r0x5m")]
-position = Vector2(440, 18)
-
-[node name="Cloud5" parent="." unique_id=1289746107 instance=ExtResource("4_r0x5m")]
-position = Vector2(670, -34)
-
-[node name="Cloud6" parent="." unique_id=1083100747 instance=ExtResource("4_r0x5m")]
-position = Vector2(940, -34)
-drift_distance = 60.0
-drift_time = 5.0
+[node name="CloudGenerator" type="Node2D" parent="." unique_id=748291034]
+script = ExtResource("6_generator")
 
 [node name="HUD" parent="." unique_id=972598837 instance=ExtResource("5_hud")]
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=53744326]
+
+[node name="left" type="CollisionShape2D" parent="Borders" unique_id=398157484]
+position = Vector2(-900, 0)
+scale = Vector2(2, 2)
+shape = SubResource("WorldBoundaryShape2D_y8xgx")
+
+[node name="right" type="CollisionShape2D" parent="Borders" unique_id=1089709203]
+position = Vector2(1344, 0)
+scale = Vector2(2, 2)
+shape = SubResource("WorldBoundaryShape2D_mx3nr")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders" unique_id=1100672935]
+scale = Vector2(2, 2)
+shape = SubResource("WorldBoundaryShape2D_reab8")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=598237691]
+stream = ExtResource("6_3mrqo")
+autoplay = true
+script = ExtResource("8_music_script")

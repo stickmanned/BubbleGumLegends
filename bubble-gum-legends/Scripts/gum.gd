@@ -6,17 +6,20 @@ signal screen_clicked(click_pos: Vector2)
 const SPEED = 300.0
 const BASE_JUMP_VELOCITY = -400.0
 
-@export var bubble_size: int = 1000
+@export var bubble_size: int = 1
 @export var size_growth_percent: float = 0.005 # +0.5% per click
 @export var jump_bonus_per_size: float = 3 # marginal jump velocity increase per size point
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var jump_sound: AudioStreamPlayer = $JumpSound
 var _base_sprite_scale: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
 	add_to_group("player")
 	_ensure_input_actions()
+	if not jump_sound:
+		jump_sound = get_node_or_null("JumpSound")
 	if sprite and _base_sprite_scale == Vector2.ZERO:
 		_base_sprite_scale = sprite.scale
 	_update_visual_size()
@@ -58,6 +61,8 @@ func _physics_process(delta: float) -> void:
 	var jump_pressed := Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("ui_accept")
 	if jump_pressed and is_on_floor():
 		velocity.y = get_current_jump_velocity()
+		if jump_sound:
+			jump_sound.play()
 
 	# Get the input direction and handle the movement/deceleration (A/D or Left/Right arrows).
 	var direction := Input.get_axis("move_left", "move_right")

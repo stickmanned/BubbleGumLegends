@@ -30,6 +30,15 @@ func _ready() -> void:
 	_apply_solid()
 
 
+func setup(pos: Vector2, dist: float = 0.0, time: float = 4.0, phase: float = 0.0) -> void:
+	position = pos
+	_origin = pos
+	drift_distance = dist
+	drift_time = time
+	drift_phase = phase
+	_elapsed = phase * time
+
+
 func _physics_process(delta: float) -> void:
 	if is_zero_approx(drift_distance) or drift_time <= 0.0:
 		return
