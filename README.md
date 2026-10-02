@@ -1,5 +1,6 @@
 # BubbleGumLegends
-Godot Jumpstart game for hack club Haven
+Godot Jumpstart game for Hack Club Haven
+Took around 5 hours to make because I decided to experiment with some Godot stuff that I was unfamiliar with.
 
 This is a relaxing game about blowing the BIGGEST bubbles and jumping infinitely up the sky! Watch your bubble grow and jump speed increase the more you blow. 
 
@@ -11,6 +12,8 @@ CONTROLS:
 WASD/ARROW KEYS to move
 SPACE to jump
 Click to blow bubbles
+
+You can play it here on itch: [https://stickmanned.itch.io/Bubble](https://stickmanned.itch.io/bubble-gum-legends)
 
 
 
